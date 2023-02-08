@@ -4,23 +4,20 @@ var surName;
 var gender;
 var dateOfBirth;
 
+var firstNameVowels;
+var firstNameCosonant;
+var str = 'XXX';
+var merge;
+
 var birthArray = [];
-var nameArray = [];
+var firstNameArray = [];
+var surNameArray = [];
 
-// console.log(birthArray.length);
+// firstNameArray.push(3);
+// firstNameArray.push('test');
+// firstNameArray.push('test');
+// console.log(firstNameArray);
 
-// birthArray.push(3);
-// birthArray.push('c');
-// console.log(birthArray);
-// const monthCode =[];
-
-// var name1 = "Matt";
-// var surName1 = "Edabit";
-// var gender1 = "male";
-// var dob = "1/1/1900";
-
-
-// console.log('test');
 
 function submitData() {
 
@@ -68,11 +65,83 @@ function submitData() {
         personName = personName.toUpperCase();
         surName = surName.toUpperCase();
     
-        // console.log(personName);
-        // console.log(surName);
+        console.log(personName);
+        console.log(surName);
+
+
+        firstNameCosonant = personName.replace(/[a,e,i,o,u]/gi , "");
+        console.log(" Cosonant "+ firstNameCosonant);
+
+        firstNameVowels = personName.replace(/[bcdfghjklmnpqrstvwxyz]/gi,'');
+        console.log( " Vowel " + firstNameVowels);
+
+        // console.log('the length of ' +firstNameCosonant.length);
+
+        if(firstNameCosonant.length === 3) {
+
+            // firstNameArray.push(firstNameCosonant);
+            for(let i = 0; i<3 ; i++) {
+                firstNameArray[i] = firstNameCosonant[i];
+            }
+
+        }
+        else if(firstNameCosonant.length > 3) {
+           
+            for(let i = 0; i<3 ; i++) {
+                firstNameArray[i] = firstNameCosonant[i];
+            }
+        }
+
+        // console.log("GReater the 3 " + firstNameArray);
+        else if(firstNameCosonant.length < 3) {
+
+            merge = firstNameCosonant + firstNameVowels + str;
+            firstNameArray = merge.slice(0,3);
+
+        // console.log(merge);
+        // console.log('The merge length is ' + merge.length);
+        // console.log('Test first name Array '+firstNameArray);
+
+            // firstNameArray.push(firstNameCosonant);
+
+            // if(firstNameCosonant.length === 0 ) {
+
+            //     firstNameArray.push(firstNameVowels[0]); 
+            //     firstNameArray.push(firstNameVowels[1]); 
+            //     firstNameArray.push(firstNameVowels[2]); 
+
+            // }
+
+            // else if(firstNameCosonant.length === 1 ) {
+
+            //     firstNameArray.push(firstNameVowels[0]); 
+            //     firstNameArray.push(firstNameVowels[1]); 
+
+            // }else if (firstNameCosonant.length === 2) {
+
+            //     firstNameArray.push(firstNameVowels[0]); 
+            // }
+
+
+            // for(let i = 0 ; i<3 ; i++) {
+            //     let counter = firstNameCosonant.length;
+
+            //     if(firstNameCosonant.length < 4) {
+            //         firstNameArray[counter] = firstNameVowels[i];  
+            //     }
+            // }
+
+        }
+
+        // console.log("test Firstname array length : " + firstNameArray);
+        // console.log("array length  is : " + firstNameArray.length);
+       
+
+       
 
 
     }
+    
     nameCheck();
 
 
@@ -120,6 +189,8 @@ function submitData() {
          if(gender == 'female' && day < 10 ) {
 
             birthArray.push(40 + day);
+         }else {
+            birthArray.push( day.toString());
          }
          
 
@@ -150,51 +221,11 @@ function submitData() {
 }
 
 
-
-
-
-
-
-
-// console.log(test);
-
-// function validation(name1 , surName1 , gender1 , dob) {
-
-//     console.log('This is testing people data');
-//     console.log(name1);
-//     console.log(surName1);
-//     console.log(gender1);
-//     console.log(dob);
-
-//     for(let i = 0 ; i<name1.length ; i++) {
-//         // console.log(name1[i]);
-//         if(name1[i] == 'a' || name1[i] == 'e' || name1[i] == 'i' || name1[i] == 'o' || name1[i] == 'u') {
-            
-//             console.log("if" + name1[i]);
-//         }
-//         else {
-//             console.log("else if" + name1[i]);
-//         }
-//     }
-
-    
-    
-// }
-
-// validation(name1 , surName1 , gender1 , dob);
-
-
-
-
-
 function onLoadData(peopleData) {
    document.getElementById('body').innerHTML = createTable(peopleData);
 
   
 }
-
-
-
 
 function createTable(peopleData) {
     var row = "<tr>";
