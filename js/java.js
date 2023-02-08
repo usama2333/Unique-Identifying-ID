@@ -6,12 +6,17 @@ var dateOfBirth;
 
 var firstNameVowels;
 var firstNameCosonant;
+var surNameVowels;
+var surNameCosonant;
 var str = 'XXX';
 var merge;
+var merge2 = 0;
 
 var birthArray = [];
 var firstNameArray = [];
 var surNameArray = [];
+var resultArray = [];
+var result;
 
 // firstNameArray.push(3);
 // firstNameArray.push('test');
@@ -70,11 +75,13 @@ function submitData() {
 
 
         firstNameCosonant = personName.replace(/[a,e,i,o,u]/gi , "");
-        console.log(" Cosonant "+ firstNameCosonant);
+        // console.log(" first Cosonant "+ firstNameCosonant);
 
         firstNameVowels = personName.replace(/[bcdfghjklmnpqrstvwxyz]/gi,'');
-        console.log( " Vowel " + firstNameVowels);
+        // console.log( "first Vowel " + firstNameVowels);
 
+
+       
         // console.log('the length of ' +firstNameCosonant.length);
 
         if(firstNameCosonant.length === 3) {
@@ -98,38 +105,6 @@ function submitData() {
             merge = firstNameCosonant + firstNameVowels + str;
             firstNameArray = merge.slice(0,3);
 
-        // console.log(merge);
-        // console.log('The merge length is ' + merge.length);
-        // console.log('Test first name Array '+firstNameArray);
-
-            // firstNameArray.push(firstNameCosonant);
-
-            // if(firstNameCosonant.length === 0 ) {
-
-            //     firstNameArray.push(firstNameVowels[0]); 
-            //     firstNameArray.push(firstNameVowels[1]); 
-            //     firstNameArray.push(firstNameVowels[2]); 
-
-            // }
-
-            // else if(firstNameCosonant.length === 1 ) {
-
-            //     firstNameArray.push(firstNameVowels[0]); 
-            //     firstNameArray.push(firstNameVowels[1]); 
-
-            // }else if (firstNameCosonant.length === 2) {
-
-            //     firstNameArray.push(firstNameVowels[0]); 
-            // }
-
-
-            // for(let i = 0 ; i<3 ; i++) {
-            //     let counter = firstNameCosonant.length;
-
-            //     if(firstNameCosonant.length < 4) {
-            //         firstNameArray[counter] = firstNameVowels[i];  
-            //     }
-            // }
 
         }
 
@@ -137,7 +112,44 @@ function submitData() {
         // console.log("array length  is : " + firstNameArray.length);
        
 
-       
+        surNameCosonant = surName.replace(/[a,e,i,o,u]/gi , "");
+        console.log(" second Cosonant "+ surNameCosonant);
+
+        surNameVowels = surName.replace(/[bcdfghjklmnpqrstvwxyz]/gi,'');
+        console.log( "second Vowel " + surNameVowels);
+
+        if (surNameCosonant.length > 3) {
+            for(let i = 0; i<4 ; i++) {
+                if(i === 1) {
+                    continue;
+                }
+                else {
+                    surNameArray[i] = surNameCosonant[i];
+                }
+                
+            }
+
+        }
+
+        else if(surNameCosonant.length === 3) {
+
+            // firstNameArray.push(firstNameCosonant);
+            for(let i = 0; i<3 ; i++) {
+                surNameArray[i] = surNameCosonant[i];
+            }
+
+        }
+        else if(surNameCosonant.length < 3) {
+
+            merge2 = surNameCosonant + surNameVowels + str;
+            surNameArray = merge2.slice(0,3);
+
+
+        }
+
+
+
+        console.log('TEst surname array ' + surNameArray );
 
 
     }
@@ -204,14 +216,26 @@ function submitData() {
     DateOfBirth(dateOfBirth);
     
     
+   function mergeData() {
+
+//     var birthArray = [];
+// var firstNameArray = [];
+// var surNameArray = [];
+// var resultArray = [];
    
+   resultArray = surNameArray.concat(firstNameArray, birthArray);
+   console.log('The result of concat array ');
+   console.log("Result Array "+ resultArray);
    
+   result = resultArray.toString();
+   console.log('Result ' + result);
 
+   result = result.replace(/[,]/gi, '');
+   console.log('Result ' + result);
+      
+   }
 
-
-
-
-
+   mergeData();
 
 
 
@@ -237,7 +261,7 @@ function createTable(peopleData) {
         row += `<td> ${value.surName} </td>`;
         row += `<td> ${value.gender} </td>`;
         row += `<td> ${value.dateOfBirth} </td>`;
-        row += `<td> ${value.code} </td> </tr>`;
+        row += `<td> ${result} </td> </tr>`;
         
         
 
