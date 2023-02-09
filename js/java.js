@@ -9,8 +9,8 @@ var firstNameCosonant;
 var surNameVowels;
 var surNameCosonant;
 var str = 'XXX';
-var merge;
-var merge2 = 0;
+var merge ;
+var merge2 ;
 
 var birthArray = [];
 var firstNameArray = [];
@@ -38,10 +38,10 @@ function submitData() {
     // console.log(gender);
     // console.log(dateOfBirth);
 
-    // if (name == "" || surName == "" || gender == "" || dateOfBirth == "") {
-    //     alert("All fields name must be filled out");
-    //     return false;
-    // }
+    if (personName == "" || surName == "" || gender == "" || dateOfBirth == "") {
+        alert("All fields name must be filled out");
+        return false;
+    }
 
    
     const data = { 
@@ -198,7 +198,7 @@ function submitData() {
 
             birthArray.push('0'+ day);
          }
-         if(gender == 'female' && day < 10 ) {
+         else if(gender == 'female' && day < 10 ) {
 
             birthArray.push(40 + day);
          }else {
@@ -218,10 +218,6 @@ function submitData() {
     
    function mergeData() {
 
-//     var birthArray = [];
-// var firstNameArray = [];
-// var surNameArray = [];
-// var resultArray = [];
    
    resultArray = surNameArray.concat(firstNameArray, birthArray);
    console.log('The result of concat array ');
@@ -263,9 +259,10 @@ function createTable(peopleData) {
         row += `<td> ${value.dateOfBirth} </td>`;
         row += `<td> ${result} </td> </tr>`;
         
-        
-
+       
     });
 
     return row;
+
+    
 }
